@@ -11,25 +11,21 @@ export default function LoginPage() {
     email: "",
     password: "",
   });
-  const [buttonDisabled, setButtonDisabled] = React.useState(false);
+  const [buttonDisabled, setButtonDisabled] = React.useState(true);
   const [loading, setLoading] = React.useState(false);
 
   const onLogin = async () => {
-    // Implement your login logic here
     try {
-      setLoading(true)
+      setLoading(true);
       const response = await axios.post("/api/users/login", user);
       console.log("Login success", response.data);
-
-      toast.success("Login success")
-
-      router.push("/profile")
-      
+      toast.success("Login success");
+      router.push("/profile");
     } catch (error: any) {
       console.log("Login failed", error.message);
       toast.error(error.message);
     } finally {
-      setLoading(true);
+      setLoading(false);
     }
   };
 
@@ -45,10 +41,9 @@ export default function LoginPage() {
     <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-gradient-to-r from-blue-400 to-purple-500">
       <div className="p-10 rounded-lg shadow-2xl bg-white w-full max-w-md">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
-        {loading ? "Processing": "Login"}
+          {loading ? "Processing" : "Login"}
         </h1>
         <hr className="mb-6 border-gray-300" />
-
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -65,7 +60,6 @@ export default function LoginPage() {
             placeholder="Email"
           />
         </div>
-
         <div className="mb-6">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -82,22 +76,27 @@ export default function LoginPage() {
             placeholder="Password"
           />
         </div>
-
         <button
-          className="w-full p-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          className={`w-full p-3 font-bold rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 ${
+            buttonDisabled
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-blue-600 hover:bg-blue-700 text-white"
+          }`}
           onClick={onLogin}
+          disabled={buttonDisabled}
         >
           Login
         </button>
-
         <div className="mt-4 text-center">
           <Link href="/signup" className="text-blue-500 hover:text-blue-700">
             Don't have an account? Signup here
           </Link>
         </div>
-
         <div className="mt-4 text-center">
-          <Link href="/forgot-password-email" className="text-blue-500 hover:text-blue-700">
+          <Link
+            href="/forgot-password-email"
+            className="text-blue-500 hover:text-blue-700"
+          >
             Forgot Password?
           </Link>
         </div>
