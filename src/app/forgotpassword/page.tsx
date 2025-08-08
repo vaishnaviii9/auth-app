@@ -1,7 +1,6 @@
 "use client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { NextResponse } from "next/server";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
