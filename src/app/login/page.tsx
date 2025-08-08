@@ -95,6 +95,12 @@ export default function LoginPage() {
             Don't have an account? Signup here
           </Link>
         </div>
+
+        <div className="mt-4 text-center">
+          <Link href="/forgot-password-email" className="text-blue-500 hover:text-blue-700">
+            Forgot Password?
+          </Link>
+        </div>
       </div>
     </div>
   );

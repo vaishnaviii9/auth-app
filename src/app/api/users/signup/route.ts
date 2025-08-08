@@ -51,7 +51,11 @@ export async function POST(request: NextRequest) {
       message: "User created successfully",
       success: true,
       savedUser,
-    });
+    },
+      {
+        status: 200
+
+      });
     
   } catch (error: any) {
     return NextResponse.json({ error: error.message }, { status: 500 });

@@ -40,7 +40,11 @@ export async function POST(request : NextRequest) {
             {
                 message: "Email verified successfully",
                 success: true
-            }
+            },
+      {
+        status: 200
+
+      }
         )
         
     } catch (error:any) {
